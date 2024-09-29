@@ -8,6 +8,8 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace LibraryManagement.API.Controllers
 {
     [ApiController]
+    // [ApiVersion("1.0")]
+    // [Route("api/v{version:apiVersion}/[controller]")]
     [Route("api/[controller]")]
     [Authorize]
     public class BooksController : ControllerBase
@@ -17,6 +19,17 @@ namespace LibraryManagement.API.Controllers
         public BooksController(IBookService bookService)
         {
             _bookService = bookService;
+        }
+
+        [HttpGet("paginated")]
+        [AllowAnonymous]
+        [SwaggerOperation("GetAllPaginatedBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(PaginatedList<Book>), description: "Get all paginated books filtered according to search string")]
+
+        public async Task<IActionResult> GetAllPaginatedBooks([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+        {
+            var books = await _bookService.GetPaginatedBooksAsync(pageIndex, pageSize);
+            return Ok(books);
         }
 
         [HttpGet]
@@ -117,6 +130,16 @@ namespace LibraryManagement.API.Controllers
             await _bookService.DeleteBookAsync(id);
 
             return NoContent();
+        }
+
+        [HttpGet("search")]
+        [AllowAnonymous]
+        [SwaggerOperation("SearchBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<Book>), description: "Search book by author or title")]
+        public async Task<IActionResult> SearchBooks([FromQuery] string searchTerm)
+        {
+            var books = await _bookService.SearchBooksAsync(searchTerm);
+            return Ok(books);
         }
     }
 }

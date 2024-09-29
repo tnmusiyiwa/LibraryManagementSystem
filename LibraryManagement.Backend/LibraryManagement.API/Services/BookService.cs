@@ -1,6 +1,7 @@
 ﻿using LibraryManagement.API.Data;
 using LibraryManagement.API.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace LibraryManagement.API.Services
 {
@@ -9,12 +10,24 @@ namespace LibraryManagement.API.Services
         private readonly ApplicationDbContext _context;
         private readonly INotificationService _notificationService;
         private readonly IReservationService _reservationService;
+        private readonly IMemoryCache _cache;
+        private const string AllBooksCacheKey = "AllBooks";
 
-        public BookService(ApplicationDbContext context, INotificationService notificationService, IReservationService reservationService)
+        public BookService(
+            ApplicationDbContext context,
+            INotificationService notificationService,
+            IReservationService reservationService,
+            IMemoryCache cache)
         {
             _context = context;
             _notificationService = notificationService;
             _reservationService = reservationService;
+            _cache = cache;
+        }
+
+        public async Task<PaginatedList<Book>> GetPaginatedBooksAsync(int pageIndex, int pageSize)
+        {
+            return await PaginatedList<Book>.CreateAsync(_context.Books, pageIndex, pageSize);
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(int page, int pageSize, string searchQuery)
@@ -35,6 +48,13 @@ namespace LibraryManagement.API.Services
                 .OrderBy(b => b.Title)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Book>> SearchBooksAsync(string searchTerm)
+        {
+            return await _context.Books
+                .Where(b => b.Title.Contains(searchTerm) || b.Author.Contains(searchTerm))
                 .ToListAsync();
         }
 

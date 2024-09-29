@@ -1,0 +1,605 @@
+2024-09-29 18:50:01.110 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.Versioning.ApiVersionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-09-29 18:50:01.938 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-09-29 18:50:02.160 +02:00 [INF] User profile is available. Using 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-09-29 18:50:02.916 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2024-09-29 18:50:02.918 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2024-09-29 18:50:03.290 +02:00 [DBG] Entity Framework Core 8.0.8 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.8' with options: None
+2024-09-29 18:50:03.364 +02:00 [DBG] Creating DbConnection.
+2024-09-29 18:50:03.436 +02:00 [DBG] Created DbConnection. (73ms).
+2024-09-29 18:50:03.445 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:03.960 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:03.971 +02:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2024-09-29 18:50:03.984 +02:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (9ms).
+2024-09-29 18:50:03.988 +02:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (17ms).
+2024-09-29 18:50:04.002 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-09-29 18:50:04.054 +02:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-09-29 18:50:04.063 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.074 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (6ms).
+2024-09-29 18:50:04.084 +02:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-09-29 18:50:04.085 +02:00 [DBG] Created DbCommand for 'ExecuteScalar' (1ms).
+2024-09-29 18:50:04.086 +02:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (2ms).
+2024-09-29 18:50:04.088 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.092 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.094 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2024-09-29 18:50:04.223 +02:00 [INF] Executed DbCommand (129ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2024-09-29 18:50:04.228 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.230 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (2ms).
+2024-09-29 18:50:04.292 +02:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Any()'
+2024-09-29 18:50:04.550 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Books AS b)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    LibraryManagement.API.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+2024-09-29 18:50:04.587 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.590 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.591 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-09-29 18:50:04.592 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2024-09-29 18:50:04.593 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2024-09-29 18:50:04.595 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Books] AS [b]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-09-29 18:50:04.611 +02:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Books] AS [b]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-09-29 18:50:04.669 +02:00 [DBG] Closing data reader to 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.675 +02:00 [DBG] A data reader for 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' is being disposed after spending 12ms reading results.
+2024-09-29 18:50:04.681 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.683 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (2ms).
+2024-09-29 18:50:04.689 +02:00 [DBG] 'ApplicationDbContext' disposed.
+2024-09-29 18:50:04.694 +02:00 [DBG] Disposing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:04.698 +02:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2024-09-29 18:50:04.717 +02:00 [DBG] Hosting starting
+2024-09-29 18:50:04.734 +02:00 [DBG] Reading data from file 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys\key-2fc6b06a-4558-48cd-a345-f72d73f6e2b7.xml'.
+2024-09-29 18:50:04.747 +02:00 [DBG] Reading data from file 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys\key-894d03bc-6cea-47c8-aa5f-2e272997d7bb.xml'.
+2024-09-29 18:50:04.749 +02:00 [DBG] Reading data from file 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys\key-eba00662-74fe-450c-88c9-7ecd64d03b3a.xml'.
+2024-09-29 18:50:04.763 +02:00 [DBG] Found key {2fc6b06a-4558-48cd-a345-f72d73f6e2b7}.
+2024-09-29 18:50:04.778 +02:00 [DBG] Found key {894d03bc-6cea-47c8-aa5f-2e272997d7bb}.
+2024-09-29 18:50:04.779 +02:00 [DBG] Found key {eba00662-74fe-450c-88c9-7ecd64d03b3a}.
+2024-09-29 18:50:04.786 +02:00 [DBG] Considering key {894d03bc-6cea-47c8-aa5f-2e272997d7bb} with expiration date 2024-10-15 16:55:37Z as default key.
+2024-09-29 18:50:04.790 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2024-09-29 18:50:04.792 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2024-09-29 18:50:04.794 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2024-09-29 18:50:04.800 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2024-09-29 18:50:04.803 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2024-09-29 18:50:04.805 +02:00 [DBG] Using key {894d03bc-6cea-47c8-aa5f-2e272997d7bb} as the default key.
+2024-09-29 18:50:04.807 +02:00 [DBG] Key ring with default key {894d03bc-6cea-47c8-aa5f-2e272997d7bb} was loaded during application startup.
+2024-09-29 18:50:05.075 +02:00 [DBG] Using development certificate: CN=localhost (Thumbprint: 62DE7AD645D2199653B23BF054293E1C19699722)
+2024-09-29 18:50:05.193 +02:00 [INF] Now listening on: https://localhost:7086
+2024-09-29 18:50:05.194 +02:00 [INF] Now listening on: http://localhost:5221
+2024-09-29 18:50:05.196 +02:00 [DBG] Loaded hosting startup assembly LibraryManagement.API
+2024-09-29 18:50:05.197 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2024-09-29 18:50:05.198 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-09-29 18:50:05.200 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-09-29 18:50:05.304 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-09-29 18:50:05.307 +02:00 [INF] Hosting environment: Development
+2024-09-29 18:50:05.308 +02:00 [INF] Content root path: C:\Projects\LibraryManagementSystem\LibraryManagement.Backend\LibraryManagement.API
+2024-09-29 18:50:05.310 +02:00 [DBG] Hosting started
+2024-09-29 18:50:05.551 +02:00 [DBG] Connection id "0HN70KR2HBV03" accepted.
+2024-09-29 18:50:05.554 +02:00 [DBG] Connection id "0HN70KR2HBV03" received FIN.
+2024-09-29 18:50:05.554 +02:00 [DBG] Connection id "0HN70KR2HBV03" started.
+2024-09-29 18:50:05.574 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-09-29 18:50:05.591 +02:00 [DBG] Connection id "0HN70KR2HBV03" stopped.
+2024-09-29 18:50:05.594 +02:00 [DBG] Connection id "0HN70KR2HBV03" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-09-29 18:50:05.937 +02:00 [DBG] Connection id "0HN70KR2HBV04" accepted.
+2024-09-29 18:50:05.964 +02:00 [DBG] Connection id "0HN70KR2HBV04" started.
+2024-09-29 18:50:06.049 +02:00 [DBG] Connection 0HN70KR2HBV04 established using the following protocol: "Tls13"
+2024-09-29 18:50:06.203 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/swagger/index.html - null null
+2024-09-29 18:50:06.384 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-09-29 18:50:06.428 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-09-29 18:50:06.432 +02:00 [DBG] Request did not match any endpoints
+2024-09-29 18:50:06.563 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-09-29 18:50:06.566 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-09-29 18:50:06.580 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2024-09-29 18:50:06.582 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2024-09-29 18:50:06.587 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/swagger/index.html - 200 null text/html;charset=utf-8 395.7119ms
+2024-09-29 18:50:06.619 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - null null
+2024-09-29 18:50:06.620 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/swagger/index.js - null null
+2024-09-29 18:50:06.629 +02:00 [DBG] No candidates found for the request path '/swagger/index.js'
+2024-09-29 18:50:06.645 +02:00 [DBG] Request did not match any endpoints
+2024-09-29 18:50:06.675 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/_vs/browserLink - null null
+2024-09-29 18:50:06.676 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - 200 13778 application/javascript; charset=utf-8 56.5578ms
+2024-09-29 18:50:06.680 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/swagger/index.js - 200 null application/javascript;charset=utf-8 60.5495ms
+2024-09-29 18:50:07.018 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/_vs/browserLink - 200 null text/javascript; charset=UTF-8 342.7038ms
+2024-09-29 18:50:08.476 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - null null
+2024-09-29 18:50:08.483 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-09-29 18:50:08.484 +02:00 [DBG] Request did not match any endpoints
+2024-09-29 18:50:08.864 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 388.4721ms
+2024-09-29 18:50:52.812 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/api/v1.0/Books/paginated?pageIndex=1&pageSize=10 - null null
+2024-09-29 18:50:52.852 +02:00 [DBG] 2 candidate(s) found for the request path '/api/v1.0/Books/paginated'
+2024-09-29 18:50:52.855 +02:00 [DBG] Endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)' with route pattern 'api/v{version:apiVersion}/Books/paginated' is valid for the request path '/api/v1.0/Books/paginated'
+2024-09-29 18:50:52.857 +02:00 [DBG] Endpoint 'LibraryManagement.API.Controllers.BooksController.GetBook (LibraryManagement.API)' with route pattern 'api/v{version:apiVersion}/Books/{id}' is valid for the request path '/api/v1.0/Books/paginated'
+2024-09-29 18:50:52.862 +02:00 [DBG] Request matched endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)'
+2024-09-29 18:50:52.867 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-09-29 18:50:53.020 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2024-09-29 18:50:53.028 +02:00 [INF] Executing endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)'
+2024-09-29 18:50:53.068 +02:00 [INF] Route matched with {action = "GetAllPaginatedBooks", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPaginatedBooks(Int32, Int32) on controller LibraryManagement.API.Controllers.BooksController (LibraryManagement.API).
+2024-09-29 18:50:53.074 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-09-29 18:50:53.077 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-09-29 18:50:53.079 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ReportApiVersionsAttribute (Order: 0)"]
+2024-09-29 18:50:53.082 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-09-29 18:50:53.084 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ReportApiVersionsAttribute (Order: 0)"]
+2024-09-29 18:50:53.090 +02:00 [DBG] Executing controller factory for controller LibraryManagement.API.Controllers.BooksController (LibraryManagement.API)
+2024-09-29 18:50:53.093 +02:00 [DBG] Executed controller factory for controller LibraryManagement.API.Controllers.BooksController (LibraryManagement.API)
+2024-09-29 18:50:53.126 +02:00 [DBG] Attempting to bind parameter 'pageIndex' of type 'System.Int32' ...
+2024-09-29 18:50:53.131 +02:00 [DBG] Attempting to bind parameter 'pageIndex' of type 'System.Int32' using the name 'pageIndex' in request data ...
+2024-09-29 18:50:53.135 +02:00 [DBG] Done attempting to bind parameter 'pageIndex' of type 'System.Int32'.
+2024-09-29 18:50:53.137 +02:00 [DBG] Done attempting to bind parameter 'pageIndex' of type 'System.Int32'.
+2024-09-29 18:50:53.140 +02:00 [DBG] Attempting to validate the bound parameter 'pageIndex' of type 'System.Int32' ...
+2024-09-29 18:50:53.144 +02:00 [DBG] Done attempting to validate the bound parameter 'pageIndex' of type 'System.Int32'.
+2024-09-29 18:50:53.147 +02:00 [DBG] Attempting to bind parameter 'pageSize' of type 'System.Int32' ...
+2024-09-29 18:50:53.149 +02:00 [DBG] Attempting to bind parameter 'pageSize' of type 'System.Int32' using the name 'pageSize' in request data ...
+2024-09-29 18:50:53.151 +02:00 [DBG] Done attempting to bind parameter 'pageSize' of type 'System.Int32'.
+2024-09-29 18:50:53.152 +02:00 [DBG] Done attempting to bind parameter 'pageSize' of type 'System.Int32'.
+2024-09-29 18:50:53.154 +02:00 [DBG] Attempting to validate the bound parameter 'pageSize' of type 'System.Int32' ...
+2024-09-29 18:50:53.155 +02:00 [DBG] Done attempting to validate the bound parameter 'pageSize' of type 'System.Int32'.
+2024-09-29 18:50:53.181 +02:00 [DBG] Entity Framework Core 8.0.8 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.8' with options: None
+2024-09-29 18:50:53.187 +02:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Count()'
+2024-09-29 18:50:53.252 +02:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleAsync<int>(
+    asyncEnumerable: new SingleQueryingEnumerable<int>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> 0
+            SELECT COUNT(*)
+            FROM Books AS b), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, int>, 
+        LibraryManagement.API.Data.ApplicationDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2024-09-29 18:50:53.266 +02:00 [DBG] Creating DbConnection.
+2024-09-29 18:50:53.268 +02:00 [DBG] Created DbConnection. (1ms).
+2024-09-29 18:50:53.269 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.270 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.272 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-09-29 18:50:53.273 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2024-09-29 18:50:53.274 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2024-09-29 18:50:53.276 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Books] AS [b]
+2024-09-29 18:50:53.301 +02:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Books] AS [b]
+2024-09-29 18:50:53.339 +02:00 [DBG] Closing data reader to 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.341 +02:00 [DBG] A data reader for 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' is being disposed after spending 30ms reading results.
+2024-09-29 18:50:53.343 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.351 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (8ms).
+2024-09-29 18:50:53.362 +02:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Skip(__p_0)
+    .Take(__p_1)'
+2024-09-29 18:50:53.372 +02:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2024-09-29 18:50:53.373 +02:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2024-09-29 18:50:53.456 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Book>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Book.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Book.Author (string) Required MaxLength(100), 1], [Property: Book.Category (string) MaxLength(50), 2], [Property: Book.CoverImage (string), 3], [Property: Book.Description (string) MaxLength(1000), 4], [Property: Book.ISBN (string) MaxLength(20), 5], [Property: Book.IsAvailable (bool) Required, 6], [Property: Book.PublicationYear (int) Required, 7], [Property: Book.Title (string) Required MaxLength(200), 8] }
+        SELECT b.Id, b.Author, b.Category, b.CoverImage, b.Description, b.ISBN, b.IsAvailable, b.PublicationYear, b.Title
+        FROM Books AS b
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Book>, 
+    LibraryManagement.API.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)'
+2024-09-29 18:50:53.468 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.470 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.471 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-09-29 18:50:53.472 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-09-29 18:50:53.476 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+2024-09-29 18:50:53.481 +02:00 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[Author], [b].[Category], [b].[CoverImage], [b].[Description], [b].[ISBN], [b].[IsAvailable], [b].[PublicationYear], [b].[Title]
+FROM [Books] AS [b]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2024-09-29 18:50:53.525 +02:00 [INF] Executed DbCommand (48ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[Author], [b].[Category], [b].[CoverImage], [b].[Description], [b].[ISBN], [b].[IsAvailable], [b].[PublicationYear], [b].[Title]
+FROM [Books] AS [b]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2024-09-29 18:50:53.583 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.613 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.615 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.616 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.618 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.619 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.620 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.622 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.623 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.624 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:50:53.626 +02:00 [DBG] Closing data reader to 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.628 +02:00 [DBG] A data reader for 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' is being disposed after spending 100ms reading results.
+2024-09-29 18:50:53.630 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.632 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (1ms).
+2024-09-29 18:50:53.641 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-09-29 18:50:53.648 +02:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2024-09-29 18:50:53.652 +02:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2024-09-29 18:50:53.654 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2024-09-29 18:50:53.655 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2024-09-29 18:50:53.658 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-09-29 18:50:53.661 +02:00 [INF] Executing OkObjectResult, writing value of type 'LibraryManagement.API.Models.PaginatedList`1[[LibraryManagement.API.Models.Book, LibraryManagement.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-09-29 18:50:53.678 +02:00 [DBG] The response will be compressed with 'gzip'.
+2024-09-29 18:50:53.698 +02:00 [INF] Executed action LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API) in 607.6804ms
+2024-09-29 18:50:53.700 +02:00 [INF] Executed endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)'
+2024-09-29 18:50:53.704 +02:00 [INF] HTTP GET /api/v1.0/Books/paginated responded 200 in 788.3350 ms
+2024-09-29 18:50:53.711 +02:00 [DBG] 'ApplicationDbContext' disposed.
+2024-09-29 18:50:53.715 +02:00 [DBG] Disposing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:50:53.716 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2024-09-29 18:50:53.720 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/api/v1.0/Books/paginated?pageIndex=1&pageSize=10 - 200 null application/json; charset=utf-8 909.1036ms
+2024-09-29 18:52:16.317 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.Versioning.ApiVersionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-09-29 18:52:16.666 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-09-29 18:52:16.809 +02:00 [INF] User profile is available. Using 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-09-29 18:52:17.558 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2024-09-29 18:52:17.560 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2024-09-29 18:52:18.118 +02:00 [DBG] Entity Framework Core 8.0.8 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.8' with options: None
+2024-09-29 18:52:18.156 +02:00 [DBG] Creating DbConnection.
+2024-09-29 18:52:18.215 +02:00 [DBG] Created DbConnection. (58ms).
+2024-09-29 18:52:18.226 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:18.569 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:18.579 +02:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2024-09-29 18:52:18.588 +02:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (5ms).
+2024-09-29 18:52:18.592 +02:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (13ms).
+2024-09-29 18:52:18.600 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-09-29 18:52:18.648 +02:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-09-29 18:52:18.657 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:18.669 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (6ms).
+2024-09-29 18:52:18.677 +02:00 [DBG] Creating DbCommand for 'ExecuteScalar'.
+2024-09-29 18:52:18.678 +02:00 [DBG] Created DbCommand for 'ExecuteScalar' (1ms).
+2024-09-29 18:52:18.679 +02:00 [DBG] Initialized DbCommand for 'ExecuteScalar' (2ms).
+2024-09-29 18:52:18.681 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:18.685 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:18.686 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2024-09-29 18:52:18.786 +02:00 [INF] Executed DbCommand (100ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2024-09-29 18:52:18.790 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:18.791 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (1ms).
+2024-09-29 18:52:18.828 +02:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Any()'
+2024-09-29 18:52:19.004 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Books AS b)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    LibraryManagement.API.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()'
+2024-09-29 18:52:19.039 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:19.042 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:19.044 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-09-29 18:52:19.045 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2024-09-29 18:52:19.047 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2024-09-29 18:52:19.049 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Books] AS [b]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-09-29 18:52:19.054 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Books] AS [b]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-09-29 18:52:19.060 +02:00 [DBG] Closing data reader to 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:19.064 +02:00 [DBG] A data reader for 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' is being disposed after spending 5ms reading results.
+2024-09-29 18:52:19.072 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:19.074 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (2ms).
+2024-09-29 18:52:19.084 +02:00 [DBG] 'ApplicationDbContext' disposed.
+2024-09-29 18:52:19.092 +02:00 [DBG] Disposing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:19.097 +02:00 [DBG] Disposed connection to database '' on server '' (4ms).
+2024-09-29 18:52:19.123 +02:00 [DBG] Hosting starting
+2024-09-29 18:52:19.137 +02:00 [DBG] Reading data from file 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys\key-2fc6b06a-4558-48cd-a345-f72d73f6e2b7.xml'.
+2024-09-29 18:52:19.143 +02:00 [DBG] Reading data from file 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys\key-894d03bc-6cea-47c8-aa5f-2e272997d7bb.xml'.
+2024-09-29 18:52:19.145 +02:00 [DBG] Reading data from file 'C:\Users\Tafadzwa Musiyiwa\AppData\Local\ASP.NET\DataProtection-Keys\key-eba00662-74fe-450c-88c9-7ecd64d03b3a.xml'.
+2024-09-29 18:52:19.153 +02:00 [DBG] Found key {2fc6b06a-4558-48cd-a345-f72d73f6e2b7}.
+2024-09-29 18:52:19.159 +02:00 [DBG] Found key {894d03bc-6cea-47c8-aa5f-2e272997d7bb}.
+2024-09-29 18:52:19.160 +02:00 [DBG] Found key {eba00662-74fe-450c-88c9-7ecd64d03b3a}.
+2024-09-29 18:52:19.168 +02:00 [DBG] Considering key {894d03bc-6cea-47c8-aa5f-2e272997d7bb} with expiration date 2024-10-15 16:55:37Z as default key.
+2024-09-29 18:52:19.174 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2024-09-29 18:52:19.176 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2024-09-29 18:52:19.178 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2024-09-29 18:52:19.182 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2024-09-29 18:52:19.185 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2024-09-29 18:52:19.189 +02:00 [DBG] Using key {894d03bc-6cea-47c8-aa5f-2e272997d7bb} as the default key.
+2024-09-29 18:52:19.191 +02:00 [DBG] Key ring with default key {894d03bc-6cea-47c8-aa5f-2e272997d7bb} was loaded during application startup.
+2024-09-29 18:52:19.367 +02:00 [DBG] Using development certificate: CN=localhost (Thumbprint: 62DE7AD645D2199653B23BF054293E1C19699722)
+2024-09-29 18:52:19.439 +02:00 [INF] Now listening on: https://localhost:7086
+2024-09-29 18:52:19.443 +02:00 [INF] Now listening on: http://localhost:5221
+2024-09-29 18:52:19.444 +02:00 [DBG] Loaded hosting startup assembly LibraryManagement.API
+2024-09-29 18:52:19.444 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2024-09-29 18:52:19.445 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-09-29 18:52:19.446 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-09-29 18:52:19.513 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-09-29 18:52:19.514 +02:00 [INF] Hosting environment: Development
+2024-09-29 18:52:19.518 +02:00 [INF] Content root path: C:\Projects\LibraryManagementSystem\LibraryManagement.Backend\LibraryManagement.API
+2024-09-29 18:52:19.520 +02:00 [DBG] Hosting started
+2024-09-29 18:52:19.570 +02:00 [DBG] Connection id "0HN70KSAFF67C" accepted.
+2024-09-29 18:52:19.570 +02:00 [DBG] Connection id "0HN70KSAFF67B" accepted.
+2024-09-29 18:52:19.577 +02:00 [DBG] Connection id "0HN70KSAFF67C" started.
+2024-09-29 18:52:19.577 +02:00 [DBG] Connection id "0HN70KSAFF67B" started.
+2024-09-29 18:52:19.592 +02:00 [DBG] Connection id "0HN70KSAFF67C" received FIN.
+2024-09-29 18:52:19.592 +02:00 [DBG] Connection id "0HN70KSAFF67B" received FIN.
+2024-09-29 18:52:19.608 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-09-29 18:52:19.608 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2024-09-29 18:52:19.626 +02:00 [DBG] Connection id "0HN70KSAFF67C" stopped.
+2024-09-29 18:52:19.626 +02:00 [DBG] Connection id "0HN70KSAFF67B" stopped.
+2024-09-29 18:52:19.630 +02:00 [DBG] Connection id "0HN70KSAFF67B" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-09-29 18:52:19.630 +02:00 [DBG] Connection id "0HN70KSAFF67C" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-09-29 18:52:20.080 +02:00 [DBG] Connection id "0HN70KSAFF67D" accepted.
+2024-09-29 18:52:20.086 +02:00 [DBG] Connection id "0HN70KSAFF67D" started.
+2024-09-29 18:52:20.185 +02:00 [DBG] Connection 0HN70KSAFF67D established using the following protocol: "Tls13"
+2024-09-29 18:52:20.350 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/swagger/index.html - null null
+2024-09-29 18:52:20.510 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-09-29 18:52:20.550 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-09-29 18:52:20.553 +02:00 [DBG] Request did not match any endpoints
+2024-09-29 18:52:20.667 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-09-29 18:52:20.673 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-09-29 18:52:20.691 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2024-09-29 18:52:20.727 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2024-09-29 18:52:20.744 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/swagger/index.html - 200 null text/html;charset=utf-8 404.3922ms
+2024-09-29 18:52:20.793 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - null null
+2024-09-29 18:52:20.797 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/swagger/index.js - null null
+2024-09-29 18:52:20.815 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/_vs/browserLink - null null
+2024-09-29 18:52:20.844 +02:00 [DBG] No candidates found for the request path '/swagger/index.js'
+2024-09-29 18:52:20.846 +02:00 [DBG] Request did not match any endpoints
+2024-09-29 18:52:20.855 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/swagger/index.js - 200 null application/javascript;charset=utf-8 58.6718ms
+2024-09-29 18:52:20.892 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - 200 13778 application/javascript; charset=utf-8 99.3851ms
+2024-09-29 18:52:20.962 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/_vs/browserLink - 200 null text/javascript; charset=UTF-8 146.3661ms
+2024-09-29 18:52:21.870 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - null null
+2024-09-29 18:52:21.876 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-09-29 18:52:21.878 +02:00 [DBG] Request did not match any endpoints
+2024-09-29 18:52:22.128 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 257.8625ms
+2024-09-29 18:52:35.055 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7086/api/Books/paginated?pageIndex=1&pageSize=10 - null null
+2024-09-29 18:52:35.062 +02:00 [DBG] 2 candidate(s) found for the request path '/api/Books/paginated'
+2024-09-29 18:52:35.064 +02:00 [DBG] Endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)' with route pattern 'api/Books/paginated' is valid for the request path '/api/Books/paginated'
+2024-09-29 18:52:35.066 +02:00 [DBG] Endpoint 'LibraryManagement.API.Controllers.BooksController.GetBook (LibraryManagement.API)' with route pattern 'api/Books/{id}' is valid for the request path '/api/Books/paginated'
+2024-09-29 18:52:35.082 +02:00 [DBG] Request matched endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)'
+2024-09-29 18:52:35.085 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-09-29 18:52:35.161 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2024-09-29 18:52:35.166 +02:00 [INF] Executing endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)'
+2024-09-29 18:52:35.180 +02:00 [INF] Route matched with {action = "GetAllPaginatedBooks", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllPaginatedBooks(Int32, Int32) on controller LibraryManagement.API.Controllers.BooksController (LibraryManagement.API).
+2024-09-29 18:52:35.184 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-09-29 18:52:35.185 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-09-29 18:52:35.186 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ReportApiVersionsAttribute (Order: 0)"]
+2024-09-29 18:52:35.188 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-09-29 18:52:35.189 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ReportApiVersionsAttribute (Order: 0)"]
+2024-09-29 18:52:35.192 +02:00 [DBG] Executing controller factory for controller LibraryManagement.API.Controllers.BooksController (LibraryManagement.API)
+2024-09-29 18:52:35.195 +02:00 [DBG] Executed controller factory for controller LibraryManagement.API.Controllers.BooksController (LibraryManagement.API)
+2024-09-29 18:52:35.198 +02:00 [DBG] Attempting to bind parameter 'pageIndex' of type 'System.Int32' ...
+2024-09-29 18:52:35.202 +02:00 [DBG] Attempting to bind parameter 'pageIndex' of type 'System.Int32' using the name 'pageIndex' in request data ...
+2024-09-29 18:52:35.204 +02:00 [DBG] Done attempting to bind parameter 'pageIndex' of type 'System.Int32'.
+2024-09-29 18:52:35.205 +02:00 [DBG] Done attempting to bind parameter 'pageIndex' of type 'System.Int32'.
+2024-09-29 18:52:35.206 +02:00 [DBG] Attempting to validate the bound parameter 'pageIndex' of type 'System.Int32' ...
+2024-09-29 18:52:35.208 +02:00 [DBG] Done attempting to validate the bound parameter 'pageIndex' of type 'System.Int32'.
+2024-09-29 18:52:35.210 +02:00 [DBG] Attempting to bind parameter 'pageSize' of type 'System.Int32' ...
+2024-09-29 18:52:35.212 +02:00 [DBG] Attempting to bind parameter 'pageSize' of type 'System.Int32' using the name 'pageSize' in request data ...
+2024-09-29 18:52:35.214 +02:00 [DBG] Done attempting to bind parameter 'pageSize' of type 'System.Int32'.
+2024-09-29 18:52:35.214 +02:00 [DBG] Done attempting to bind parameter 'pageSize' of type 'System.Int32'.
+2024-09-29 18:52:35.215 +02:00 [DBG] Attempting to validate the bound parameter 'pageSize' of type 'System.Int32' ...
+2024-09-29 18:52:35.217 +02:00 [DBG] Done attempting to validate the bound parameter 'pageSize' of type 'System.Int32'.
+2024-09-29 18:52:35.229 +02:00 [DBG] Entity Framework Core 8.0.8 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.8' with options: None
+2024-09-29 18:52:35.236 +02:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Count()'
+2024-09-29 18:52:35.271 +02:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleAsync<int>(
+    asyncEnumerable: new SingleQueryingEnumerable<int>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> 0
+            SELECT COUNT(*)
+            FROM Books AS b), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, int>, 
+        LibraryManagement.API.Data.ApplicationDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2024-09-29 18:52:35.281 +02:00 [DBG] Creating DbConnection.
+2024-09-29 18:52:35.282 +02:00 [DBG] Created DbConnection. (1ms).
+2024-09-29 18:52:35.283 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.285 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.287 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-09-29 18:52:35.287 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-09-29 18:52:35.288 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2024-09-29 18:52:35.290 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Books] AS [b]
+2024-09-29 18:52:35.293 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Books] AS [b]
+2024-09-29 18:52:35.305 +02:00 [DBG] Closing data reader to 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.306 +02:00 [DBG] A data reader for 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' is being disposed after spending 10ms reading results.
+2024-09-29 18:52:35.308 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.310 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (1ms).
+2024-09-29 18:52:35.316 +02:00 [DBG] Compiling query expression: 
+'DbSet<Book>()
+    .Skip(__p_0)
+    .Take(__p_1)'
+2024-09-29 18:52:35.323 +02:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2024-09-29 18:52:35.325 +02:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2024-09-29 18:52:35.357 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Book>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Book.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Book.Author (string) Required MaxLength(100), 1], [Property: Book.Category (string) MaxLength(50), 2], [Property: Book.CoverImage (string), 3], [Property: Book.Description (string) MaxLength(1000), 4], [Property: Book.ISBN (string) MaxLength(20), 5], [Property: Book.IsAvailable (bool) Required, 6], [Property: Book.PublicationYear (int) Required, 7], [Property: Book.Title (string) Required MaxLength(200), 8] }
+        SELECT b.Id, b.Author, b.Category, b.CoverImage, b.Description, b.ISBN, b.IsAvailable, b.PublicationYear, b.Title
+        FROM Books AS b
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Book>, 
+    LibraryManagement.API.Data.ApplicationDbContext, 
+    False, 
+    False, 
+    True
+)'
+2024-09-29 18:52:35.366 +02:00 [DBG] Opening connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.369 +02:00 [DBG] Opened connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.370 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-09-29 18:52:35.371 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2024-09-29 18:52:35.375 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+2024-09-29 18:52:35.378 +02:00 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[Author], [b].[Category], [b].[CoverImage], [b].[Description], [b].[ISBN], [b].[IsAvailable], [b].[PublicationYear], [b].[Title]
+FROM [Books] AS [b]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2024-09-29 18:52:35.401 +02:00 [INF] Executed DbCommand (25ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[Author], [b].[Category], [b].[CoverImage], [b].[Description], [b].[ISBN], [b].[IsAvailable], [b].[PublicationYear], [b].[Title]
+FROM [Books] AS [b]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2024-09-29 18:52:35.450 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.476 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.480 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.481 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.483 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.484 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.486 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.487 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.490 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.492 +02:00 [DBG] Context 'ApplicationDbContext' started tracking 'Book' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-09-29 18:52:35.493 +02:00 [DBG] Closing data reader to 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.495 +02:00 [DBG] A data reader for 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' is being disposed after spending 88ms reading results.
+2024-09-29 18:52:35.496 +02:00 [DBG] Closing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.497 +02:00 [DBG] Closed connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV' (0ms).
+2024-09-29 18:52:35.507 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-09-29 18:52:35.511 +02:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2024-09-29 18:52:35.513 +02:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2024-09-29 18:52:35.515 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2024-09-29 18:52:35.516 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2024-09-29 18:52:35.518 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-09-29 18:52:35.521 +02:00 [INF] Executing OkObjectResult, writing value of type 'LibraryManagement.API.Models.PaginatedList`1[[LibraryManagement.API.Models.Book, LibraryManagement.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-09-29 18:52:35.530 +02:00 [DBG] The response will be compressed with 'gzip'.
+2024-09-29 18:52:35.540 +02:00 [INF] Executed action LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API) in 345.9527ms
+2024-09-29 18:52:35.542 +02:00 [INF] Executed endpoint 'LibraryManagement.API.Controllers.BooksController.GetAllPaginatedBooks (LibraryManagement.API)'
+2024-09-29 18:52:35.546 +02:00 [INF] HTTP GET /api/Books/paginated responded 200 in 438.1055 ms
+2024-09-29 18:52:35.551 +02:00 [DBG] 'ApplicationDbContext' disposed.
+2024-09-29 18:52:35.556 +02:00 [DBG] Disposing connection to database 'LibraryManagementDB' on server 'DESKTOP-48SPU7L\SQL_DEV'.
+2024-09-29 18:52:35.559 +02:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2024-09-29 18:52:35.560 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7086/api/Books/paginated?pageIndex=1&pageSize=10 - 200 null application/json; charset=utf-8 505.7795ms

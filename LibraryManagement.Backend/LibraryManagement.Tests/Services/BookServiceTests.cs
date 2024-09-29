@@ -42,7 +42,7 @@ namespace LibraryManagement.Tests.Services
         {
             // Arrange
             var dbContext = await GetDatabaseContext();
-            var bookService = new BookService(dbContext, null, null);
+            var bookService = new BookService(dbContext, null, null, null);
 
             // Act
             var result = await bookService.GetAllBooksAsync(1, 10, "");
@@ -56,7 +56,7 @@ namespace LibraryManagement.Tests.Services
         {
             // Arrange
             var dbContext = await GetDatabaseContext();
-            var bookService = new BookService(dbContext, null, null);
+            var bookService = new BookService(dbContext, null, null, null);
 
             // Act
             var result = await bookService.GetBookByIdAsync(1);
@@ -71,7 +71,7 @@ namespace LibraryManagement.Tests.Services
         {
             // Arrange
             var dbContext = await GetDatabaseContext();
-            var bookService = new BookService(dbContext, null, null);
+            var bookService = new BookService(dbContext, null, null, null);
             var newBook = new Book
             {
                 Title = "New Book",
@@ -94,7 +94,7 @@ namespace LibraryManagement.Tests.Services
         {
             // Arrange
             var dbContext = await GetDatabaseContext();
-            var bookService = new BookService(dbContext, null, null);
+            var bookService = new BookService(dbContext, null, null, null);
             var bookToUpdate = await bookService.GetBookByIdAsync(1);
             bookToUpdate.Title = "Updated Book";
 
@@ -112,7 +112,7 @@ namespace LibraryManagement.Tests.Services
         {
             // Arrange
             var dbContext = await GetDatabaseContext();
-            var bookService = new BookService(dbContext, null, null);
+            var bookService = new BookService(dbContext, null, null, null);
 
             // Act
             await bookService.DeleteBookAsync(1);

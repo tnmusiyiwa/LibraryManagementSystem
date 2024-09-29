@@ -1,13 +1,19 @@
 
+using AspNetCoreRateLimit;
 using LibraryManagement.API.Config;
 using LibraryManagement.API.Data;
+using LibraryManagement.API.Middleware;
 using LibraryManagement.API.Models;
 using LibraryManagement.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Text;
 
 namespace LibraryManagement.API
@@ -17,6 +23,10 @@ namespace LibraryManagement.API
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Configure Serilog
+            builder.Host.UseSerilog((context, configuration) =>
+                configuration.ReadFrom.Configuration(context.Configuration));
 
             // Add services to the container.
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -73,6 +83,15 @@ namespace LibraryManagement.API
             });
 
             builder.Services.AddControllers();
+
+            // Configure API versioning
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.ReportApiVersions = true;
+            });
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
@@ -83,9 +102,56 @@ namespace LibraryManagement.API
                     Description = "Library Management System API Documentation"
                 });
 
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+
                 c.EnableAnnotations();
             });
 
+            // Configure caching
+            builder.Services.AddMemoryCache();
+
+            // Configure rate limiting
+            builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+            builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+            builder.Services.AddInMemoryRateLimiting();
+
+            // Configure compression
+            builder.Services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<GzipCompressionProvider>();
+            });
+
+            // Configure health checks
+            builder.Services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>();
+
+            // Register services
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
@@ -105,6 +171,14 @@ namespace LibraryManagement.API
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
+
+            app.UseResponseCompression();
+
+            app.UseIpRateLimiting();
+
+            app.UseSerilogRequestLogging();
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -127,6 +201,8 @@ namespace LibraryManagement.API
                     logger.LogError(ex, "An error occurred while seeding the database.");
                 }
             }
+
+            app.MapHealthChecks("/health");
 
             app.Run();
         }
