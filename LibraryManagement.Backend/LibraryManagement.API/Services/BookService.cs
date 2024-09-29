@@ -208,15 +208,6 @@ namespace LibraryManagement.API.Services
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Reservation>> GetReservedBooksAsync()
-        {
-            return await _context.Reservations
-                .Include(r => r.Book)
-                .Include(r => r.User)
-                .Where(r => !r.IsCanceled)
-                .ToListAsync();
-        }
-
         public async Task<IEnumerable<BorrowedBook>> GetOverdueBooksAsync()
         {
             var today = DateTime.UtcNow.Date;

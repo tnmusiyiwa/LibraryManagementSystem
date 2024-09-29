@@ -2,21 +2,30 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import Home from '../views/HomeView.vue'
 import Login from '../views/LoginView.vue'
-import Callback from '../views/CallbackView.vue'
-import Books from '../views/BooksView.vue'
-import BookDetails from '../views/BookDetailsView.vue'
 import Dashboard from '../views/DashboardView.vue'
+import AdminDashboard from '../views/AdminDashboard.vue'
+import AdminUsers from '../views/AdminUsers.vue'
+import AdminBooks from '../views/AdminBooks.vue'
+import AdminNotifications from '../views/AdminNotifications.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
-  { path: '/callback', component: Callback },
-  { path: '/books', component: Books },
-  { path: '/books/:id', component: BookDetails },
   {
     path: '/dashboard',
     component: Dashboard,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/admin',
+    component: AdminDashboard,
+    meta: { requiresAuth: true, requiresAdmin: true },
+    children: [
+      { path: '', redirect: { name: 'AdminUsers' } },
+      { path: 'users', name: 'AdminUsers', component: AdminUsers },
+      { path: 'books', name: 'AdminBooks', component: AdminBooks },
+      { path: 'notifications', name: 'AdminNotifications', component: AdminNotifications }
+    ]
   }
 ]
 
@@ -31,6 +40,8 @@ router.beforeEach(async (to, from, next) => {
 
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next('/login')
+  } else if (to.meta.requiresAdmin && !authStore.isAdmin) {
+    next('/dashboard')
   } else {
     next()
   }

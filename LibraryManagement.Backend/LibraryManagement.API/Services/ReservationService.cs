@@ -167,5 +167,15 @@
                 .Where(r => r.UserId == userId && r.BookId == bookId && !r.IsCanceled)
                 .FirstOrDefaultAsync();
         }
+
+        public async Task<IEnumerable<Reservation>> GetReservedBooksAsync()
+        {
+            return await _context.Reservations
+                .Include(r => r.Book)
+                .Include(r => r.User)
+                .Where(r => !r.IsCanceled)
+                .ToListAsync();
+        }
+
     }
 }

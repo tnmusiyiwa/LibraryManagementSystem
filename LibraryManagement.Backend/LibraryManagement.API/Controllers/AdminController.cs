@@ -14,11 +14,13 @@ namespace LibraryManagement.API.Controllers
     {
         private readonly IBookService _bookService;
         private readonly INotificationService _notificationService;
+        private readonly IReservationService _reservationService;
 
-        public AdminController(IBookService bookService, INotificationService notificationService)
+        public AdminController(IBookService bookService, INotificationService notificationService, IReservationService reservationService)
         {
             _bookService = bookService;
             _notificationService = notificationService;
+            _reservationService = reservationService;
         }
 
         [HttpGet("borrowed-books")]
@@ -31,7 +33,7 @@ namespace LibraryManagement.API.Controllers
         [HttpGet("reserved-books")]
         public async Task<IActionResult> GetReservedBooks()
         {
-            var reservedBooks = await _bookService.GetReservedBooksAsync();
+            var reservedBooks = await _reservationService.GetReservedBooksAsync();
             return Ok(reservedBooks);
         }
 

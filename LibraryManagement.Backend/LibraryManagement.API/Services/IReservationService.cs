@@ -13,5 +13,7 @@ namespace LibraryManagement.API.Services
         Task<IEnumerable<Reservation>> GetReservationsAsync(string userId);
         Task CancelReservationAsync(int reservationId);
         Task<Reservation> GetReservationByUserByBook(string userId, int bookId);
+        Task<IEnumerable<Reservation>> GetReservedBooksAsync();
+
     }
 }

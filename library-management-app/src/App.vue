@@ -9,7 +9,7 @@
           <template v-if="isAuthenticated">
             <router-link to="/dashboard" class="mr-4">Dashboard</router-link>
             <template v-if="isAdmin">
-              <router-link to="/admin" class="mr-4">Admin</router-link>
+              <router-link :to="{ name: 'AdminUsers' }" class="mr-4">Admin</router-link>
             </template>
             <button
               @click="logout"

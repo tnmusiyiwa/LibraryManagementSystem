@@ -9,7 +9,7 @@ export const useUserDashboardStore = defineStore('userDashboard', {
   actions: {
     async fetchBorrowedBooks() {
       try {
-        const response = await api.get('/api/users/borrowed-books')
+        const response = await api.get('/users/borrowed-books')
         this.borrowedBooks = response.data
       } catch (error) {
         console.error('Failed to fetch borrowed books:', error)
