@@ -74,7 +74,17 @@ namespace LibraryManagement.API
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "Library Management System",
+                    Version = "v1",
+                    Description = "Library Management System API Documentation"
+                });
+
+                c.EnableAnnotations();
+            });
 
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<IUserService, UserService>();
@@ -87,7 +97,10 @@ namespace LibraryManagement.API
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Library Management System Documentation v1");
+                });
             }
 
             app.UseHttpsRedirection();

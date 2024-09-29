@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "f0YBGK7gvYA=",
+  "dgSpecHash": "bJlv24tjiaM=",
   "success": true,
   "projectFilePath": "C:\\Projects\\LibraryManagementSystem\\LibraryManagement.Backend\\LibraryManagement.Tests\\LibraryManagement.Tests.csproj",
   "expectedPackageFiles": [
@@ -80,6 +80,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Tafadzwa Musiyiwa\\.nuget\\packages\\swashbuckle.aspnetcore\\6.8.0\\swashbuckle.aspnetcore.6.8.0.nupkg.sha512",
+    "C:\\Users\\Tafadzwa Musiyiwa\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.8.0\\swashbuckle.aspnetcore.annotations.6.8.0.nupkg.sha512",
     "C:\\Users\\Tafadzwa Musiyiwa\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.8.0\\swashbuckle.aspnetcore.swagger.6.8.0.nupkg.sha512",
     "C:\\Users\\Tafadzwa Musiyiwa\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.8.0\\swashbuckle.aspnetcore.swaggergen.6.8.0.nupkg.sha512",
     "C:\\Users\\Tafadzwa Musiyiwa\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.8.0\\swashbuckle.aspnetcore.swaggerui.6.8.0.nupkg.sha512",

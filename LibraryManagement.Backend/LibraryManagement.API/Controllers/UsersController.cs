@@ -1,4 +1,5 @@
-﻿using LibraryManagement.API.Dtos;
+﻿using LibraryManagement.API.Attributes;
+using LibraryManagement.API.Dtos;
 using LibraryManagement.API.Models;
 using LibraryManagement.API.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -46,6 +48,10 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpPost("register")]
+        [ValidateModelState]
+        [SwaggerOperation("Register")]
+        [SwaggerResponse(statusCode: 200, type: typeof(ApplicationUser), description: "Register as a new user")]
+
         public async Task<ActionResult<ApplicationUser>> Register(RegisterDto model)
         {
             try
@@ -74,6 +80,10 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpPost("login")]
+        [ValidateModelState]
+        [SwaggerOperation("Login")]
+        [SwaggerResponse(statusCode: 200, type: typeof(object), description: "Login user returns token and expiry date")]
+
         public async Task<IActionResult> Login(LoginDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -114,6 +124,10 @@ namespace LibraryManagement.API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost("assign-role")]
+        [ValidateModelState]
+        [SwaggerOperation("AssignRole")]
+        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Assign user to a role")]
+
         public async Task<IActionResult> AssignRole(AssignRoleDto model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -139,6 +153,10 @@ namespace LibraryManagement.API.Controllers
 
         [Authorize]
         [HttpGet("me")]
+        [ValidateModelState]
+        [SwaggerOperation("GetCurrentUser")]
+        [SwaggerResponse(statusCode: 200, type: typeof(ApplicationUser), description: "Get current user details")]
+
         public async Task<IActionResult> GetCurrentUser()
         {
             _logger.LogInformation("GetCurrentUser called. User.Identity.Name: {Name}", User.Identity?.Name);
@@ -157,6 +175,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpGet("{id}")]
         [Authorize]
+        [ValidateModelState]
+        [SwaggerOperation("GetUser")]
+        [SwaggerResponse(statusCode: 200, type: typeof(ApplicationUser), description: "Get user by Id")]
+
         public async Task<ActionResult<ApplicationUser>> GetUser(string id)
         {
             var user = await _userService.GetUserByIdAsync(id);
@@ -171,6 +193,9 @@ namespace LibraryManagement.API.Controllers
 
         [HttpGet("borrowed-books")]
         [Authorize]
+        [SwaggerOperation("GetBorrowedBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<BorrowedBook>), description: "Get user's borrowed books")]
+
         public async Task<ActionResult<IEnumerable<BorrowedBook>>> GetBorrowedBooks()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -180,6 +205,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpGet("reservations")]
         [Authorize]
+        [ValidateModelState]
+        [SwaggerOperation("GetReservations")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<Reservation>), description: "Get user's reservations")]
+
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -189,6 +218,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpPost("borrow")]
         [Authorize]
+        [ValidateModelState]
+        [SwaggerOperation("BorrowBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(BorrowedBook), description: "Borrow a book")]
+
         public async Task<ActionResult<BorrowedBook>> BorrowBook(BorrowBookDto borrowBookDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -205,6 +238,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpPost("return")]
         [Authorize]
+        [ValidateModelState]
+        [SwaggerOperation("ReturnBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(void), description: "Return a book")]
+
         public async Task<IActionResult> ReturnBook(ReturnBookDto returnBookDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -221,6 +258,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpPost("reserve")]
         [Authorize]
+        [ValidateModelState]
+        [SwaggerOperation("ReserveBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(Reservation), description: "Reserve book")]
+
         public async Task<ActionResult<Reservation>> ReserveBook(ReserveBookDto reserveBookDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -237,6 +278,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpDelete("reservations/{id}")]
         [Authorize]
+        [ValidateModelState]
+        [SwaggerOperation("CancelReservation")]
+        [SwaggerResponse(statusCode: 200, type: typeof(void), description: "Cancel reservation")]
+
         public async Task<IActionResult> CancelReservation(int id)
         {
             try
@@ -252,6 +297,10 @@ namespace LibraryManagement.API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
+        [ValidateModelState]
+        [SwaggerOperation("GetAllUsers")]
+        [SwaggerResponse(statusCode: 200, type: typeof(List<ApplicationUser>), description: "Get all users (admin only)")]
+
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userManager.Users
@@ -262,6 +311,10 @@ namespace LibraryManagement.API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ValidateModelState]
+        [SwaggerOperation("CreateUser")]
+        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Create a new user (admin only)")]
+
         public async Task<IActionResult> CreateUser(CreateUserDto model)
         {
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
@@ -278,6 +331,10 @@ namespace LibraryManagement.API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
+        [ValidateModelState]
+        [SwaggerOperation("UpdateUser")]
+        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Update user details (admin only)")]
+
         public async Task<IActionResult> UpdateUser(string id, UpdateUserDto model)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -305,6 +362,10 @@ namespace LibraryManagement.API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
+        [ValidateModelState]
+        [SwaggerOperation("DeleteUser")]
+        [SwaggerResponse(statusCode: 200, type: typeof(string), description: "Delete a user (admin only)")]
+
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);

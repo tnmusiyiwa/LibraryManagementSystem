@@ -2,6 +2,7 @@
 using LibraryManagement.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Threading.Tasks;
 
@@ -24,6 +25,8 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpGet("borrowed-books")]
+        [SwaggerOperation("GetBorrowedBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<BorrowedBook>), description: "Get all borrowed books")]
         public async Task<IActionResult> GetBorrowedBooks()
         {
             var borrowedBooks = await _bookService.GetBorrowedBooksAsync();
@@ -31,6 +34,9 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpGet("reserved-books")]
+        [SwaggerOperation("GetReservedBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<Reservation>), description: "Get all reserved books")]
+
         public async Task<IActionResult> GetReservedBooks()
         {
             var reservedBooks = await _reservationService.GetReservedBooksAsync();
@@ -38,6 +44,9 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpGet("overdue-books")]
+        [SwaggerOperation("GetOverdueBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<BorrowedBook>), description: "Get all borrowed books that are now overdue")]
+
         public async Task<IActionResult> GetOverdueBooks()
         {
             var overdueBooks = await _bookService.GetOverdueBooksAsync();
@@ -45,6 +54,9 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpGet("almost-due-books")]
+        [SwaggerOperation("GetAlmostDueBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<BorrowedBook>), description: "Get all borrowed books that are near return date")]
+
         public async Task<IActionResult> GetAlmostDueBooks()
         {
             var almostDueBooks = await _bookService.GetAlmostDueBooksAsync();
@@ -52,6 +64,9 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpGet("unsent-notifications")]
+        [SwaggerOperation("GetUnsentNotifications")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<Notification>), description: "Get notifications that are not yet sent to get user interests")]
+
         public async Task<IActionResult> GetUnsentNotifications()
         {
             var unsentNotifications = await _notificationService.GetUnsentNotificationsAsync();

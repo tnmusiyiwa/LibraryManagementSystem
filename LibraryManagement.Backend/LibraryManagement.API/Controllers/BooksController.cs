@@ -1,7 +1,9 @@
-﻿using LibraryManagement.API.Models;
+﻿using LibraryManagement.API.Attributes;
+using LibraryManagement.API.Models;
 using LibraryManagement.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace LibraryManagement.API.Controllers
 {
@@ -19,6 +21,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [ValidateModelState]
+        [SwaggerOperation("GetBooks")]
+        [SwaggerResponse(statusCode: 200, type: typeof(IEnumerable<Book>), description: "Get paginated books filtered according to search string")]
+
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = "")
         {
             var books = await _bookService.GetAllBooksAsync(page, pageSize, searchQuery);
@@ -35,6 +41,9 @@ namespace LibraryManagement.API.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
+        [ValidateModelState]
+        [SwaggerOperation("GetBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(Book), description: "Get book by id")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
             var book = await _bookService.GetBookByIdAsync(id);
@@ -49,6 +58,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateModelState]
+        [SwaggerOperation("CreateBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(Book), description: "Create a new book (admin only)")]
+
         public async Task<ActionResult<Book>> CreateBook(Book book)
         {
             var createdBook = await _bookService.AddBookAsync(book);
@@ -57,6 +70,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
+        [ValidateModelState]
+        [SwaggerOperation("UpdateBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(void), description: "Update Book Details (admin only)")]
+
         public async Task<IActionResult> UpdateBook(int id, Book book)
         {
             if (id != book.Id)
@@ -85,6 +102,10 @@ namespace LibraryManagement.API.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
+        [ValidateModelState]
+        [SwaggerOperation("DeleteBook")]
+        [SwaggerResponse(statusCode: 200, type: typeof(void), description: "Delete Book (admin only)")]
+
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _bookService.GetBookByIdAsync(id);
