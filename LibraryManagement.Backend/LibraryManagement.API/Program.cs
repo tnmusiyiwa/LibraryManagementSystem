@@ -93,13 +93,9 @@ namespace LibraryManagement.API
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
 
-            // app.UseIdentityServer();
-            // app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
-
-            // _ = app.UseEndpoints(endpoints => { _ = endpoints.MapControllers().RequireAuthorization("ApiScope"); ; });
 
             // Initialize the database
             using (var scope = app.Services.CreateScope())
