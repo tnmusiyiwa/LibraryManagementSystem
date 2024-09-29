@@ -4,6 +4,7 @@ using LibraryManagement.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -247,6 +248,79 @@ namespace LibraryManagement.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userManager.Users
+                .Select(u => new { u.Id, u.Email, u.Name, u.UserName })
+                .ToListAsync();
+            return Ok(users);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> CreateUser(CreateUserDto model)
+        {
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, model.Role);
+                return Ok(new { message = "User created successfully" });
+            }
+
+            return BadRequest(result.Errors);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(string id, UpdateUserDto model)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Email = model.Email;
+            user.UserName = model.Email;
+            user.Name = model.Name;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                var currentRoles = await _userManager.GetRolesAsync(user);
+                await _userManager.RemoveFromRolesAsync(user, currentRoles);
+                await _userManager.AddToRoleAsync(user, model.Role);
+                return Ok(new { message = "User updated successfully" });
+            }
+
+            return BadRequest(result.Errors);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { message = "User deleted successfully" });
+            }
+
+            return BadRequest(result.Errors);
         }
     }
 }

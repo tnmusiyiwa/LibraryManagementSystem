@@ -17,7 +17,7 @@ export const useUserDashboardStore = defineStore('userDashboard', {
     },
     async fetchReservations() {
       try {
-        const response = await api.get('/api/users/reservations')
+        const response = await api.get('/users/reservations')
         this.reservations = response.data
       } catch (error) {
         console.error('Failed to fetch reservations:', error)
@@ -25,7 +25,7 @@ export const useUserDashboardStore = defineStore('userDashboard', {
     },
     async borrowBook(bookId, days) {
       try {
-        const response = await api.post('/api/users/borrow', { bookId, days })
+        const response = await api.post('/users/borrow', { bookId, days })
         this.borrowedBooks.push(response.data)
       } catch (error) {
         console.error('Failed to borrow book:', error)
@@ -34,7 +34,7 @@ export const useUserDashboardStore = defineStore('userDashboard', {
     },
     async returnBook(bookId) {
       try {
-        await api.post('/api/users/return', { bookId })
+        await api.post('/users/return', { bookId })
         this.borrowedBooks = this.borrowedBooks.filter((b) => b.id !== bookId)
       } catch (error) {
         console.error('Failed to return book:', error)
@@ -43,7 +43,7 @@ export const useUserDashboardStore = defineStore('userDashboard', {
     },
     async reserveBook(bookId) {
       try {
-        const response = await api.post('/api/users/reserve', { bookId })
+        const response = await api.post('/users/reserve', { bookId })
         this.reservations.push(response.data)
       } catch (error) {
         console.error('Failed to reserve book:', error)
@@ -52,7 +52,7 @@ export const useUserDashboardStore = defineStore('userDashboard', {
     },
     async cancelReservation(reservationId) {
       try {
-        await api.delete(`/api/users/reservations/${reservationId}`)
+        await api.delete(`/users/reservations/${reservationId}`)
         this.reservations = this.reservations.filter((r) => r.id !== reservationId)
       } catch (error) {
         console.error('Failed to cancel reservation:', error)

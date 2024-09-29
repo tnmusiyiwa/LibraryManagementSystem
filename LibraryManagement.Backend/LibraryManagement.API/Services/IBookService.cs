@@ -15,5 +15,10 @@ namespace LibraryManagement.API.Services
         Task<BorrowedBook> BorrowBookAsync(string userId, int bookId, int days);
         Task ReturnBookAsync(string userId, int bookId);
         Task<Reservation> ReserveBookAsync(string userId, int bookId, bool notifyWhenAvailable = false);
+        Task<IEnumerable<BorrowedBook>> GetBorrowedBooksAsync();
+        Task<IEnumerable<Reservation>> GetReservedBooksAsync();
+        Task<IEnumerable<BorrowedBook>> GetOverdueBooksAsync();
+        Task<IEnumerable<BorrowedBook>> GetAlmostDueBooksAsync();
+
     }
 }

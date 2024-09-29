@@ -115,6 +115,16 @@
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Reservation>> GetAllActiveReservationsAsync()
+        {
+            var query = _context.Reservations.AsQueryable();
+
+            return await query
+                .Where(r => r.ExpiryDate >= DateTime.UtcNow && !r.IsCanceled)
+                .OrderByDescending(r => r.ReservationDate)
+                .ToListAsync();
+        }
+
         /// <summary>
         /// The GetReservationByIdAsync
         /// </summary>

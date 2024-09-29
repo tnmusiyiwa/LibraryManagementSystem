@@ -10,5 +10,6 @@ namespace LibraryManagement.API.Services
         Task DeleteNotificationAsync(int notificationId);
         Task SendNofications();
         Task SendNotication(int notificationId);
+        Task<IEnumerable<Notification>> GetUnsentNotificationsAsync();
     }
 }

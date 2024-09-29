@@ -13,7 +13,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(email, password) {
       try {
-        const response = await api.post('/api/users/login', { email, password })
+        const response = await api.post('/users/login', { email, password })
         this.token = response.data.token
         localStorage.setItem('token', this.token)
         api.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
@@ -31,7 +31,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async fetchUserInfo() {
       try {
-        const response = await api.get('/api/users/me')
+        const response = await api.get('/users/me')
         this.user = response.data
       } catch (error) {
         console.error('Failed to fetch user info:', error)

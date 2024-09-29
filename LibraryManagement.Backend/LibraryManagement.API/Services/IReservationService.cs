@@ -5,6 +5,7 @@ namespace LibraryManagement.API.Services
     public interface IReservationService
     {
         Task<IEnumerable<Reservation>> GetAllAsync();
+        Task<IEnumerable<Reservation>> GetAllActiveReservationsAsync();
         Task<Reservation> GetReservationByIdAsync(int id);
         Task<Reservation> AddReservationAsync(Reservation reservation);
         Task<Reservation> UpdateReservationAsync(Reservation reservation);

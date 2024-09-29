@@ -30,7 +30,7 @@
             </p>
           </div>
           <button
-            @click="returnBook(borrowedBook.id)"
+            @click="returnBook(borrowedBook.book.id)"
             class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
             :disabled="returning === borrowedBook.id"
           >
@@ -72,8 +72,8 @@ const fetchBorrowedBooks = async () => {
 const returnBook = async (id) => {
   try {
     returning.value = id
-    await api.delete(`/users/return-book/${id}`)
-    borrowedBooks.value = borrowedBooks.value.filter((r) => r.id !== id)
+    await api.post(`/users/return`, { bookId: id })
+    borrowedBooks.value = borrowedBooks.value.filter((r) => r.book.id !== id)
     showNotification('Borrowed book returned successfully', 'success')
   } catch (err) {
     console.error('Failed to return book:', err)

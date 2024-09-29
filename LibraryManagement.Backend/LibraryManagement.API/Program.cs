@@ -62,6 +62,16 @@ namespace LibraryManagement.API
                 };
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -81,9 +91,15 @@ namespace LibraryManagement.API
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
+
+            // app.UseIdentityServer();
+            // app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
+
+            // _ = app.UseEndpoints(endpoints => { _ = endpoints.MapControllers().RequireAuthorization("ApiScope"); ; });
 
             // Initialize the database
             using (var scope = app.Services.CreateScope())

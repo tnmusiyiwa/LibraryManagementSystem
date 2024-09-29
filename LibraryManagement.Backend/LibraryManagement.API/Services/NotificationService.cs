@@ -92,5 +92,13 @@ namespace LibraryManagement.API.Services
                 await this.MarkNotificationAsSentAsync(notification.Id);
             }
         }
+
+        public async Task<IEnumerable<Notification>> GetUnsentNotificationsAsync()
+        {
+            return await _context.Notifications
+                .Include(n => n.User)
+                .Where(n => !n.IsSent)
+                .ToListAsync();
+        }
     }
 }

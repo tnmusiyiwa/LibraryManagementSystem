@@ -198,5 +198,44 @@ namespace LibraryManagement.API.Services
 
             return reservation;
         }
+
+        public async Task<IEnumerable<BorrowedBook>> GetBorrowedBooksAsync()
+        {
+            return await _context.BorrowedBooks
+                .Include(bb => bb.Book)
+                .Include(bb => bb.User)
+                .Where(bb => bb.ReturnDate == null)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Reservation>> GetReservedBooksAsync()
+        {
+            return await _context.Reservations
+                .Include(r => r.Book)
+                .Include(r => r.User)
+                .Where(r => !r.IsCanceled)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<BorrowedBook>> GetOverdueBooksAsync()
+        {
+            var today = DateTime.UtcNow.Date;
+            return await _context.BorrowedBooks
+                .Include(bb => bb.Book)
+                .Include(bb => bb.User)
+                .Where(bb => bb.ReturnDate == null && bb.DueDate < today)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<BorrowedBook>> GetAlmostDueBooksAsync()
+        {
+            var today = DateTime.UtcNow.Date;
+            var threeDaysFromNow = today.AddDays(3);
+            return await _context.BorrowedBooks
+                .Include(bb => bb.Book)
+                .Include(bb => bb.User)
+                .Where(bb => bb.ReturnDate == null && bb.DueDate >= today && bb.DueDate <= threeDaysFromNow)
+                .ToListAsync();
+        }
     }
 }
