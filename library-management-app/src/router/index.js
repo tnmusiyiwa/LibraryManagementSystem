@@ -7,10 +7,12 @@ import AdminDashboard from '../views/AdminDashboard.vue'
 import AdminUsers from '../views/AdminUsers.vue'
 import AdminBooks from '../views/AdminBooks.vue'
 import AdminNotifications from '../views/AdminNotifications.vue'
+import BooksView from '@/views/BooksView.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
+  { path: '/books', component: BooksView },
   {
     path: '/dashboard',
     component: Dashboard,

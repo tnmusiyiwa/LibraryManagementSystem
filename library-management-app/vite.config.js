@@ -6,10 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -18,6 +15,6 @@ export default defineConfig({
   define: {
     'process.env': {
       VITE_APP_API_URL: JSON.stringify(import.meta.env.VITE_APP_API_URL)
-    }    
+    }
   }
 })
