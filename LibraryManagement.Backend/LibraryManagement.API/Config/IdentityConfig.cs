@@ -17,7 +17,7 @@ namespace LibraryManagement.API.Config
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("api1", "Library API")
+                new ApiScope("api1", "Library Management API")
             };
 
         public static IEnumerable<Client> Clients =>

@@ -1,0 +1,22 @@
+meta {
+  name: Assign User Roles
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://localhost:7086/api/users/assign-role
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJqdGkiOiIwZjNiY2YwMi1lOGNlLTRkMDQtOTVkNS0zYjEwZDRlNGEwMTkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTcyNzU5NDEwOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzA4NiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTE3MyJ9.4kuiuLzR1L_UuZ0fn9ZMHJrlTTQev8KQ7UhpUrDuS0Q
+}
+
+body:json {
+  {
+    "email": "tnmusiyiwa@gmail.com",
+    "role": "Admin"
+  }
+}

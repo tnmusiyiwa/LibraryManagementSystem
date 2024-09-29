@@ -9,10 +9,12 @@ namespace LibraryManagement.API.Services
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext _context;
+        private readonly INotificationService _notificationService;
 
-        public UserService(ApplicationDbContext context)
+        public UserService(ApplicationDbContext context, INotificationService notificationService)
         {
             _context = context;
+            _notificationService = notificationService;
         }
 
         public async Task<ApplicationUser> AuthenticateAsync(string email, string password)
@@ -41,87 +43,6 @@ namespace LibraryManagement.API.Services
         public async Task<ApplicationUser> GetUserByIdAsync(string id)
         {
             return await _context.Users.FindAsync(id);
-        }
-
-        public async Task<IEnumerable<BorrowedBook>> GetBorrowedBooksAsync(string userId)
-        {
-            return await _context.BorrowedBooks
-                .Where(bb => bb.UserId == userId && bb.ReturnDate == null)
-                .Include(bb => bb.Book)
-                .ToListAsync();
-        }
-
-        public async Task<IEnumerable<Reservation>> GetReservationsAsync(string userId)
-        {
-            return await _context.Reservations
-                .Where(r => r.UserId == userId)
-                .Include(r => r.Book)
-                .ToListAsync();
-        }
-
-        public async Task<BorrowedBook> BorrowBookAsync(string userId, int bookId, int days)
-        {
-            var book = await _context.Books.FindAsync(bookId);
-            if (book == null || !book.IsAvailable)
-                throw new Exception("Book is not available for borrowing");
-
-            var borrowedBook = new BorrowedBook
-            {
-                UserId = userId,
-                BookId = bookId,
-                BorrowDate = DateTime.UtcNow,
-                DueDate = DateTime.UtcNow.AddDays(days)
-            };
-
-            book.IsAvailable = false;
-            _context.BorrowedBooks.Add(borrowedBook);
-            await _context.SaveChangesAsync();
-
-            return borrowedBook;
-        }
-
-        public async Task ReturnBookAsync(string userId, int bookId)
-        {
-            var borrowedBook = await _context.BorrowedBooks
-                .SingleOrDefaultAsync(bb => bb.UserId == userId && bb.BookId == bookId && bb.ReturnDate == null);
-
-            if (borrowedBook == null)
-                throw new Exception("Book not found or already returned");
-
-            borrowedBook.ReturnDate = DateTime.UtcNow;
-            var book = await _context.Books.FindAsync(bookId);
-            book.IsAvailable = true;
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Reservation> ReserveBookAsync(string userId, int bookId)
-        {
-            var book = await _context.Books.FindAsync(bookId);
-            if (book == null || book.IsAvailable)
-                throw new Exception("Book is not available for reservation");
-
-            var reservation = new Reservation
-            {
-                UserId = userId,
-                BookId = bookId,
-                ReservationDate = DateTime.UtcNow
-            };
-
-            _context.Reservations.Add(reservation);
-            await _context.SaveChangesAsync();
-
-            return reservation;
-        }
-
-        public async Task CancelReservationAsync(int reservationId)
-        {
-            var reservation = await _context.Reservations.FindAsync(reservationId);
-            if (reservation == null)
-                throw new Exception("Reservation not found");
-
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
         }
 
         private string CreatePasswordHash(string password)

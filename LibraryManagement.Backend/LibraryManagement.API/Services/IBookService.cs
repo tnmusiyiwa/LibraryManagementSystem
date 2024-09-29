@@ -10,6 +10,10 @@ namespace LibraryManagement.API.Services
         Task<Book> UpdateBookAsync(Book book);
         Task DeleteBookAsync(int id);
         Task<int> GetTotalBooksCountAsync(string searchQuery);
-        Task ReturnBookAsync(int borrowedBookId);
+        Task<IEnumerable<BorrowedBook>> GetBorrowedBooksAsync(string userId);
+        Task<IEnumerable<Reservation>> GetReservationsAsync(string userId);
+        Task<BorrowedBook> BorrowBookAsync(string userId, int bookId, int days);
+        Task ReturnBookAsync(string userId, int bookId);
+        Task<Reservation> ReserveBookAsync(string userId, int bookId, bool notifyWhenAvailable = false);
     }
 }

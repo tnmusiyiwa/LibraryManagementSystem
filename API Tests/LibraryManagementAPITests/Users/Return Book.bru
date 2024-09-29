@@ -1,0 +1,21 @@
+meta {
+  name: Return Book
+  type: http
+  seq: 11
+}
+
+post {
+  url: https://localhost:7086/api/users/return
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlcjFAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjUyNWM5ZDM0LTQ5Y2YtNDZmMy1hNDZkLTIzM2IzNzY5YzI5ZSIsImp0aSI6IjZkYjdkMmFjLWZhNzktNGY3NC1hMzc0LTdmYTA2YzlmMTQ0NyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJleHAiOjE3Mjc1OTY0NzgsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwODYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUxNzMifQ.mKDrA-m9fhu3UL1gVMM14rs-nFN1GTgxFJnRPw3mdgo
+}
+
+body:json {
+  {
+    "bookId": 5
+  }
+}

@@ -17,14 +17,14 @@ namespace LibraryManagement.API.Services
             _context = context;
         }
 
-        public async Task CreateNotificationAsync(string userId, string message, int? bookId = null)
+        public async Task CreateNotificationAsync(string userId, string message, int? bookId = null, bool sendImmediately = true)
         {
             var notification = new Notification
             {
                 UserId = userId,
                 Message = message,
                 IsSent = false,
-                CreatedDate = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
             };
 
             if (bookId != null)
@@ -34,12 +34,17 @@ namespace LibraryManagement.API.Services
 
             _context.Notifications.Add(notification);
             await _context.SaveChangesAsync();
+
+            if (sendImmediately)
+            {
+                await this.SendNotication(notification.Id);
+            }
         }
 
         public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId)
         {
             return await _context.Notifications
-                .Where(n => n.UserId == userId)
+                .Where(n => n.UserId == userId && !n.IsSent)
                 .OrderByDescending(n => n.CreatedDate)
                 .ToListAsync();
         }
@@ -62,6 +67,17 @@ namespace LibraryManagement.API.Services
             {
                 _context.Notifications.Remove(notification);
                 await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task SendNotication(int notificationId)
+        {
+            var notification = await _context.Notifications.FindAsync(notificationId);
+            if (notification != null)
+            {
+                // TODO: Logic to send notification to user
+
+                await this.MarkNotificationAsSentAsync(notificationId);
             }
         }
 

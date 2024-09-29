@@ -1,0 +1,28 @@
+meta {
+  name: Create Book
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://localhost:7086/api/Books
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjhBRTI4RDkwRkVDQ0JDNjcxRjE1NjBFRjZERjFGNzg2IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3Mjc1NjY1NzYsImV4cCI6MTcyNzU3MDE3NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzA4NiIsImNsaWVudF9pZCI6InZ1ZSIsInN1YiI6ImMwNGM3YjEyLTJiNjAtNGI1MC1hNTkyLTY3Y2U1YjI5MDJmZiIsImF1dGhfdGltZSI6MTcyNzU1OTEwNiwiaWRwIjoibG9jYWwiLCJqdGkiOiIwMTQ0ODMzMUVGNkUxNzA0MTVERTkzOTQ2ODAyOTJDMyIsInNpZCI6IkRFRDA0OUE3QjZGNkVGRTBGQkU3MkI4MkU1OTYwMzc0IiwiaWF0IjoxNzI3NTY2NTc2LCJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIiwiZW1haWwiLCJhcGkxIl0sImFtciI6WyJwd2QiXX0.dwyyU3NYaEVpeJXjt__sytHdlt4kLk8XfWMQYnHY0W4ld7DT6-4VB01pTK7KdbfTFri7WhF5AGo2SyPg4zjByQzalPdmGzQ1FiSpoZiQVCNMwsfvPc10srweh7KnQTKf3RaPIKnJ321b4zGckNWkVEhf1mRReDF_Dam7xn2qPJZpG6BbigN2fvNiGpHJC2OsR-4vwtSXFsdWiaNQPr-j-hFFDEww4eIDyGCHm_0DGlx_TQkLdT31CItRYF41LqS_YK_VqAkvv8Qcj-KUAmEkH6ER59tErlRh6E9dm5LgpEWFNXjQd7p3wWcW26YOgF6G3NC-ABB4Bod9mZqwuzN9Eg
+}
+
+body:json {
+  {
+    "title": "New Title 3",
+    "author": "New Author",
+    "publicationYear": 2024,
+    "category": "Mystery",
+    "isbn": "12345678901225",
+    "isAvailable": true,
+    "description": "Test description 3",
+    "coverImage": null
+  }
+}

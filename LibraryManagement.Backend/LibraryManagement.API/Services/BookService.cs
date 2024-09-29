@@ -8,11 +8,13 @@ namespace LibraryManagement.API.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly INotificationService _notificationService;
+        private readonly IReservationService _reservationService;
 
-        public BookService(ApplicationDbContext context, INotificationService notificationService)
+        public BookService(ApplicationDbContext context, INotificationService notificationService, IReservationService reservationService)
         {
             _context = context;
             _notificationService = notificationService;
+            _reservationService = reservationService;
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(int page, int pageSize, string searchQuery)
@@ -82,20 +84,62 @@ namespace LibraryManagement.API.Services
             return await query.CountAsync();
         }
 
-        public async Task ReturnBookAsync(int borrowedBookId)
+        public async Task<IEnumerable<BorrowedBook>> GetBorrowedBooksAsync(string userId)
+        {
+            return await _context.BorrowedBooks
+                .Where(bb => bb.UserId == userId && bb.ReturnDate == null)
+                .Include(bb => bb.Book)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Reservation>> GetReservationsAsync(string userId)
+        {
+            return await _context.Reservations
+                .Where(r => r.UserId == userId)
+                .Include(r => r.Book)
+                .ToListAsync();
+        }
+
+        public async Task<BorrowedBook> BorrowBookAsync(string userId, int bookId, int days)
+        {
+            var book = await _context.Books.FindAsync(bookId);
+            var reservation = await _reservationService.GetReservationByUserByBook(userId, bookId);
+
+            if (book == null || (!book.IsAvailable && reservation == null))
+                throw new Exception("Book is not available for borrowing");
+
+            var borrowDate = DateTime.UtcNow;
+            var dueDate = borrowDate.AddDays(days);
+
+            var borrowedBook = new BorrowedBook
+            {
+                UserId = userId,
+                BookId = bookId,
+                BorrowDate = borrowDate,
+                DueDate = dueDate
+            };
+
+            book.IsAvailable = false;
+            _context.BorrowedBooks.Add(borrowedBook);
+            await _context.SaveChangesAsync();
+
+            if (reservation != null)
+                await _reservationService.DeleteReservationAsync(reservation.Id);
+
+            return borrowedBook;
+        }
+
+        public async Task ReturnBookAsync(string userId, int bookId)
         {
             var borrowedBook = await _context.BorrowedBooks
-                .Include(bb => bb.Book)
-                .Include(bb => bb.User)
-                .FirstOrDefaultAsync(bb => bb.Id == borrowedBookId);
+                .SingleOrDefaultAsync(bb => bb.UserId == userId && bb.BookId == bookId && bb.ReturnDate == null);
 
             if (borrowedBook == null)
-            {
-                throw new ArgumentException("Borrowed book not found!");
-            }
+                throw new Exception("Book not found or already returned");
 
             borrowedBook.ReturnDate = DateTime.UtcNow;
-            borrowedBook.Book.IsAvailable = true;
+            var book = await _context.Books.FindAsync(bookId);
+            book.IsAvailable = true;
 
             await _context.SaveChangesAsync();
 
@@ -106,61 +150,53 @@ namespace LibraryManagement.API.Services
                 borrowedBook.Book.Id
             );
 
-            // Check if there are any reservations for this book
-            var oldestReservation = await _context.Reservations
-                .Where(r => r.BookId == borrowedBook.BookId && !r.IsCanceled && r.ExpiryDate >= DateTime.UtcNow)
-                .OrderBy(r => r.ReservationDate)
+            // Check if there are any notifications for this book
+            var oldestNotification = await _context.Notifications
+                .Where(n => n.BookId == borrowedBook.BookId && !n.IsSent)
+                .OrderByDescending(n => n.CreatedDate)
                 .FirstOrDefaultAsync();
 
-            if (oldestReservation != null)
+            if (oldestNotification != null)
             {
                 // Create a notification for the user with oldest reservation
-                await _notificationService.CreateNotificationAsync(
-                    oldestReservation.UserId,
-                    $"The book '{borrowedBook.Book.Title}' you reserved is now available. Please visit the library to borrow it.",
-                    oldestReservation.Book.Id
-                );
+                await _notificationService.SendNotication(oldestNotification.Id);
             }
         }
 
-        public async Task CancelReservationAsync(int reservationId)
+        public async Task<Reservation> ReserveBookAsync(string userId, int bookId, bool notifyWhenAvailable = false)
         {
-            var reservation = await _context.Reservations
-                .Include(r => r.Book)
-                .Include(r => r.User)
-                .FirstOrDefaultAsync(r => r.Id == reservationId);
-
-            if (reservation == null)
+            var book = await _context.Books.FindAsync(bookId);
+            if (book == null || !book.IsAvailable)
             {
-                throw new ArgumentException("Reservation not found!");
+                if (notifyWhenAvailable && book != null)
+                {
+                    // Create a notification to be notified when book
+                    await _notificationService.CreateNotificationAsync(
+                        userId,
+                        $"The book '{book.Title}' you reserved is now available. Please visit the library to borrow it.",
+                        bookId,
+                        false
+                    );
+                }
+
+                throw new Exception("Book is not available for reservation");
             }
 
-            reservation.IsCanceled = true;
+            var reservation = new Reservation
+            {
+                UserId = userId,
+                BookId = bookId,
+                ReservationDate = DateTime.UtcNow,
+                ExpiryDate = DateTime.UtcNow.AddDays(1)
+            };
+
+            _context.Reservations.Add(reservation);
+
+            book.IsAvailable = false;
+
             await _context.SaveChangesAsync();
 
-            // Create a notification for the user
-            await _notificationService.CreateNotificationAsync(
-                reservation.UserId,
-                $"Your reservation for the book '{reservation.Book.Title}' has been canceled.",
-                reservation.BookId
-            );
-
-            // Check if there any other reservations for this book
-            var nextReservation = await _context.Reservations
-                .Where(r => r.BookId == reservation.BookId && !r.IsCanceled && r.Id != reservationId && r.ExpiryDate > DateTime.UtcNow)
-                .OrderBy(r => r.ReservationDate)
-                .FirstOrDefaultAsync();
-
-            if (nextReservation != null)
-            {
-                // Create a notification for the user with the next reservation
-                await _notificationService.CreateNotificationAsync(
-                    nextReservation.UserId,
-                    $"A reservation for the book '{reservation.Book.Title}' has been canceled. Your reservation has moved up in the queue.",
-                    nextReservation.BookId
-                );
-            }
+            return reservation;
         }
-
     }
 }

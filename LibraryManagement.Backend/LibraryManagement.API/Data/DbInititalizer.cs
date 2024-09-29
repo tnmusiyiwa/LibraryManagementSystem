@@ -12,9 +12,9 @@ namespace LibraryManagement.API.Data
     {
         public static async Task Initialize(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            context.Database.Migrate();
+            await context.Database.EnsureCreatedAsync();
 
-            if (context.Books.Any() || context.Users.Any())
+            if (context.Books.Any())
             {
                 return; // DB has been seeded
             }

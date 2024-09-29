@@ -18,18 +18,30 @@ namespace LibraryManagement.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _configuration;
         private readonly IUserService _userService;
+        private readonly ILogger<UsersController> _logger;
+        private readonly IBookService _bookService;
+        private readonly IReservationService _reservationService;
 
         public UsersController(
             IUserService userService,
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            IConfiguration configuration,
+            RoleManager<IdentityRole> roleManager,
+            ILogger<UsersController> logger,
+            IBookService bookService,
+            IReservationService reservationService)
         {
             _userService = userService;
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
+            _configuration = configuration;
+            _logger = logger;
+            _bookService = bookService;
+            _reservationService = reservationService;
         }
 
         [HttpPost("register")]
@@ -61,19 +73,42 @@ namespace LibraryManagement.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(LoginDto loginDto)
+        public async Task<IActionResult> Login(LoginDto model)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password, false, false);
-
-            if (result.Succeeded)
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var user = await _userManager.FindByEmailAsync(loginDto.Email);
-                var roles = await _userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
 
-                return Ok(new { message = "Login successful", roles });
+                var authClaims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.UserName),
+            new Claim(ClaimTypes.NameIdentifier, user.Id),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        };
+
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
+
+                var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+                var token = new JwtSecurityToken(
+                    issuer: _configuration["JWT:ValidIssuer"],
+                    audience: _configuration["JWT:ValidAudience"],
+                    expires: DateTime.Now.AddHours(3),
+                    claims: authClaims,
+                    signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    expiration = token.ValidTo
+                });
             }
-
-            return Unauthorized(new { message = "Invalid login attempt" });
+            return Unauthorized();
         }
 
         [Authorize(Roles = "Admin")]
@@ -105,14 +140,18 @@ namespace LibraryManagement.API.Controllers
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
         {
+            _logger.LogInformation("GetCurrentUser called. User.Identity.Name: {Name}", User.Identity?.Name);
+            _logger.LogInformation("User.Identity.IsAuthenticated: {IsAuthenticated}", User.Identity?.IsAuthenticated);
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
+                _logger.LogWarning("User not found in database");
                 return NotFound();
             }
 
             var roles = await _userManager.GetRolesAsync(user);
-            return Ok(new { user.Id, user.Email, Roles = roles });
+            return Ok(new { user.Id, user.Email, user.Name, Roles = roles });
         }
 
         [HttpGet("{id}")]
@@ -134,7 +173,7 @@ namespace LibraryManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<BorrowedBook>>> GetBorrowedBooks()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var borrowedBooks = await _userService.GetBorrowedBooksAsync(userId);
+            var borrowedBooks = await _bookService.GetBorrowedBooksAsync(userId);
             return Ok(borrowedBooks);
         }
 
@@ -143,7 +182,7 @@ namespace LibraryManagement.API.Controllers
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var reservations = await _userService.GetReservationsAsync(userId);
+            var reservations = await _bookService.GetReservationsAsync(userId);
             return Ok(reservations);
         }
 
@@ -154,7 +193,7 @@ namespace LibraryManagement.API.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             try
             {
-                var borrowedBook = await _userService.BorrowBookAsync(userId, borrowBookDto.BookId, borrowBookDto.Days);
+                var borrowedBook = await _bookService.BorrowBookAsync(userId, borrowBookDto.BookId, borrowBookDto.Days);
                 return Ok(borrowedBook);
             }
             catch (Exception ex)
@@ -170,7 +209,7 @@ namespace LibraryManagement.API.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             try
             {
-                await _userService.ReturnBookAsync(userId, returnBookDto.BookId);
+                await _bookService.ReturnBookAsync(userId, returnBookDto.BookId);
                 return Ok();
             }
             catch (Exception ex)
@@ -186,7 +225,7 @@ namespace LibraryManagement.API.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             try
             {
-                var reservation = await _userService.ReserveBookAsync(userId, reserveBookDto.BookId);
+                var reservation = await _bookService.ReserveBookAsync(userId, reserveBookDto.BookId, reserveBookDto.NotifyWhenAvailable);
                 return Ok(reservation);
             }
             catch (Exception ex)
@@ -201,7 +240,7 @@ namespace LibraryManagement.API.Controllers
         {
             try
             {
-                await _userService.CancelReservationAsync(id);
+                await _reservationService.CancelReservationAsync(id);
                 return Ok();
             }
             catch (Exception ex)

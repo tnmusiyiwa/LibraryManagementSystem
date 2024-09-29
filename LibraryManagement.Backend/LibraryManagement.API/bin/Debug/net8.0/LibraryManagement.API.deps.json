@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "LibraryManagement.API/1.0.0": {
         "dependencies": {
+          "IdentityServer4.AccessTokenValidation": "3.0.1",
           "IdentityServer4.AspNetIdentity": "4.1.2",
           "Microsoft.AspNetCore.Authentication.Google": "8.0.8",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
@@ -75,6 +76,17 @@
           }
         }
       },
+      "IdentityModel.AspNetCore.OAuth2Introspection/4.0.1": {
+        "dependencies": {
+          "IdentityModel": "4.4.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/IdentityModel.AspNetCore.OAuth2Introspection.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.1.0"
+          }
+        }
+      },
       "IdentityServer4/4.1.2": {
         "dependencies": {
           "IdentityModel": "4.4.0",
@@ -87,6 +99,18 @@
           "lib/netcoreapp3.1/IdentityServer4.dll": {
             "assemblyVersion": "4.1.2.0",
             "fileVersion": "4.1.2.0"
+          }
+        }
+      },
+      "IdentityServer4.AccessTokenValidation/3.0.1": {
+        "dependencies": {
+          "IdentityModel.AspNetCore.OAuth2Introspection": "4.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/IdentityServer4.AccessTokenValidation.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.1.0"
           }
         }
       },
@@ -1074,12 +1098,26 @@
       "path": "identitymodel/4.4.0",
       "hashPath": "identitymodel.4.4.0.nupkg.sha512"
     },
+    "IdentityModel.AspNetCore.OAuth2Introspection/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZNdMZMaj9fqR3j50vYsu+1U3QGd6n8+fqwf+a8mCTcmXGor+HgFDfdq0mM34bsmD6uEgAQup7sv2ZW5kR36dbA==",
+      "path": "identitymodel.aspnetcore.oauth2introspection/4.0.1",
+      "hashPath": "identitymodel.aspnetcore.oauth2introspection.4.0.1.nupkg.sha512"
+    },
     "IdentityServer4/4.1.2": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-blaxxGuOA7v/w1q+fxn97wZ+x2ecG1ZD4mc/N/ZOXMNeFZZhqv+4LF26Gecyik3nWrJPmbMEtQbLmRsKG8k61w==",
       "path": "identityserver4/4.1.2",
       "hashPath": "identityserver4.4.1.2.nupkg.sha512"
+    },
+    "IdentityServer4.AccessTokenValidation/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qu/M6UyN4o9NVep7q545Ms7hYAnsQqSdLbN1Fjjrn4m35lyBfeQPSSNzDryAKHbodyWOQfHaOqKEyMEJQ5Rpgw==",
+      "path": "identityserver4.accesstokenvalidation/3.0.1",
+      "hashPath": "identityserver4.accesstokenvalidation.3.0.1.nupkg.sha512"
     },
     "IdentityServer4.AspNetIdentity/4.1.2": {
       "type": "package",

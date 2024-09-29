@@ -17,19 +17,17 @@ namespace LibraryManagement.API.Models
         [Required]
         public int PublicationYear { get; set; }
 
-        [Required]
         [MaxLength(50)]
-        public string Category { get; set; }
+        public string? Category { get; set; }
 
-        [Required]
         [MaxLength(20)]
-        public string ISBN { get; set; }
+        public string? ISBN { get; set; }
 
         public bool IsAvailable { get; set; } = true;
 
         [MaxLength(1000)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string CoverImage { get; set; }
+        public string? CoverImage { get; set; }
     }
 }

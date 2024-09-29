@@ -1,0 +1,29 @@
+meta {
+  name: Update Book Details
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://localhost:7086/api/Books/23
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJqdGkiOiI5ZjMzYTdkMy0wMTRjLTRiNGMtYTNkZC0zNDBhNzY2ZTYyMzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTcyNzU5MzUxMiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzA4NiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTE3MyJ9.eaTTUTTJ7GkUsIDDh-Rz5CQCEEyBMON6bDvTFRc_iAk
+}
+
+body:json {
+  {
+    "id": 23,
+    "title": "New Title 3 Updated",
+    "author": "New Author",
+    "publicationYear": 2024,
+    "category": "Mystery",
+    "isbn": "12345678901225",
+    "isAvailable": true,
+    "description": "Test description 3",
+    "coverImage": null
+  }
+}
