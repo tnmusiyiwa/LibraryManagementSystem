@@ -15,12 +15,15 @@ This project is a comprehensive Library Management System with both backend (ASP
 ## Technologies Used
 
 ### Backend
-- ASP.NET Core 6.0
+
+- ASP.NET Core 8.0
 - Entity Framework Core
 - SQL Server
 - IdentityServer4 for authentication
+- xUnit Testing
 
 ### Frontend
+
 - Vue.js 3
 - Vue Router
 - Pinia for state management
@@ -29,6 +32,7 @@ This project is a comprehensive Library Management System with both backend (ASP
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
+
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [Node.js](https://nodejs.org/) (v14 or later)
 - [npm](https://www.npmjs.com/) (usually comes with Node.js)
@@ -39,28 +43,38 @@ Before you begin, ensure you have the following installed:
 ### Backend Setup
 
 1. Clone the repository:
+   ```bash
    git clone https://github.com/tnmusiyiwa/LibraryManagementSystem.git
    cd LibraryManagementSystem/LibraryManagementSystem.Backend
+   ```
 2. Update the connection string in `appsettings.json` to point to your SQL Server instance.
 
 3. Open a terminal in the backend project directory and run the following commands:
+   ```bash
    dotnet restore
    dotnet ef database update
    dotnet run
+   ```
 
 This will restore the NuGet packages, create the database, and start the backend server.
 
 ### Frontend Setup
 
 1. Open a new terminal and navigate to the frontend directory:
+   ```bash
    cd ../library-management-app
+   ```
 2. Install the dependencies:
+   ```bash
    npm install
+   ```
 3. Create a `.env` file in the frontend directory and add the following:
    VITE_API_URL=[https://localhost:7086/api](https://localhost:7086/api)
-  Replace the URL with the actual URL of your backend API if different.
+   Replace the URL with the actual URL of your backend API if different.
 4. Start the development server:
+   ```bash
    npm run dev
+   ```
 
 The frontend application should now be running and accessible at `http://localhost:5173`.
 
@@ -69,10 +83,12 @@ The frontend application should now be running and accessible at `http://localho
 1. Open your web browser and navigate to `http://localhost:5173`.
 
 2. Register a new user account or use the default admin account:
+
 - Email: admin@example.com
 - Password: Admin123!
 
 3. Test the following features:
+
 - Search for books
 - Reserve a book
 - Borrow a book
@@ -82,6 +98,20 @@ The frontend application should now be running and accessible at `http://localho
 - Manage books (admin only)
 - View and manage notifications (admin only)
 
+4. To test endpoints you can download and install Bruno API testing tool `https://www.usebruno.com/`
+5. Import the collection in /API Tests
+6. Change bearer token for protected endpoints, run Login and copy token to use on other endpoints
+
+### Backend Tests
+
+1. Navigate to the backend test project directory:
+   ```bash
+   cd LibraryManagement.Backend/LibraryManagement.Tests
+   ```
+2. Run the tests
+   ```bash
+   dotnet test
+   ```
 
 ## Deployment
 
